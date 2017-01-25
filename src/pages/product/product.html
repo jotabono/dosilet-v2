@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      CATÁLOGO
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="dms-block-description">
+
+  						<div class="category-decorative-image background-cover" style="background-image: url(http://dosilet.deideasmarketing.solutions/wp-content/uploads/2016/12/hornos-pizzas-1024x683.jpg);"></div>
+  						<h1>{{parent_name}}</h1>
+  						<h2>{{this.name}}</h2>
+  						<h3>{{subtitle}}</h3>
+              <div class="sliders">
+                <ion-slides>
+                  <ion-slide *ngFor="let p of products" class="background-contain" [ngStyle]="{'background-image': 'url(' + p.image + ')'}" >
+                    <div class="test"> {{p.name}}</div>
+                      <!-- <div class="product-reference"> {{p.name}}</div> -->
+                  </ion-slide>
+                  <!-- <ion-slide-box ng-controller="ExampleController" pager-click="navSlide(index)" auto-play="true" does-continue="true"> -->
+                </ion-slides>
+              </div>
+              <div class="desc" [innerHtml]="description"></div>
+  </div>
+</ion-content>

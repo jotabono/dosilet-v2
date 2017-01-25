@@ -1,0 +1,34 @@
+page-catalog {
+  .navbarDosilet {
+    text-align: center;
+  }
+
+  .div-logo-header {
+    display: inline;
+  }
+
+  .div-logo-header:hover {
+    cursor: pointer;
+  }
+
+  a:hover, a:active, a:focus, a:visited{
+    text-decoration: none;
+  }
+
+  .input-wrapper{
+    background-color: #313131;
+    font-size:20px;
+  }
+  .catalog-button, .catalog-button>.item-inner{
+    padding:0 !important;
+  }
+  .button-inner{
+    justify-content:flex-start;
+  }
+  .sub-cat{
+    margin-left:2% !important;
+  }
+  .catalog-icon{
+    padding-right:3px !important;
+  }
+}

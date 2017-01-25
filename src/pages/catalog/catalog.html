@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar class="navbarDosilet">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <div (click)="openHome()" class="div-logo-header">
+      <img style="width:90px; height:auto;" src="assets/img/logo.png" />
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+ <ion-list>
+    <button class="catalog-button" ion-item *ngFor="let c of categories" (click)="showSubCategories(c.id)">
+    <span class="button-inner">{{c.title}}</span>
+    </button>
+    <ion-list>
+      <button class="catalog-button" ion-item *ngFor="let sc of subCategories" (click)="openCategory(sc.id, sc.title)">
+      <span class="button-inner sub-cat"><ion-icon color="primary" ios="ios-add" md="md-add"></ion-icon><span style="margin-left: 5px;"></span>{{sc.title}}</span>
+    </button>
+    </ion-list>
+  </ion-list> 
+</ion-content>
