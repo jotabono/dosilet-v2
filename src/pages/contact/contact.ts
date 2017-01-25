@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import {Http, Response} from "@angular/http";
 import { HomePage } from '../home/home';
+import { Globals } from '../../providers/globals';
+
 declare var window: any;
 @Component({
   selector: 'page-contact',

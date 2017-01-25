@@ -1,17 +1,23 @@
 <ion-header>
- <ion-navbar>
-   <ion-title>
-       <img style="width: 50%; height:auto;" src="assets/img/logo.png" />
-   </ion-title>
- </ion-navbar>
+  <ion-navbar>
+    <ion-title>
+      <img style="width: 50%; height:auto;" src="assets/img/logo.png" />
+    </ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
- <div class="title_home">
-   <p>
-   CALIDAD<br/>
-   EXPERIENCIA<br/>
-   INNOVACIÓN<br/>
-   </p>
- </div>
+  <div class="title_home">
+    <p>
+      CALIDAD<br/> EXPERIENCIA
+      <br/> INNOVACIÓN
+      <br/>
+    </p>
+  </div>
 </ion-content>
+
+<ion-footer>
+  <div class="footer">
+    <button *ngFor="let p of globals.pages" (click)="globals.openPage(p.component)" class="btn-footer">{{p.title}}</button>
+  </div>
+</ion-footer>

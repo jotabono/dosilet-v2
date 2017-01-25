@@ -4,9 +4,11 @@ import { HomePage } from '../home/home';
 import {Http} from '@angular/http';
 import { LoadingController } from 'ionic-angular';
 import { ProductPage } from '../product/product';
+import { Globals } from '../../providers/globals';
 
 @Component({
   selector: 'page-catalog',
+  providers: [Globals],
   templateUrl: 'catalog.html'
 })
 export class CatalogPage {
@@ -55,13 +57,11 @@ export class CatalogPage {
         this.subCategories.push({ id: this.allCategories[i].term_id, title: this.allCategories[i].name, slug: this.allCategories[i].slug });
       }
     }
-    console.log(this.subCategories);
   }
 
-  openCategory(id, name) {
+  openCategory(id) {
     this.navCtrl.push(ProductPage, {
-      idCategory: id,
-      nameCategory: name
+      id: id
     });
   }
 

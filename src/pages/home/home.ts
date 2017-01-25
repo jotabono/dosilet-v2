@@ -1,25 +1,13 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
-import { ContactPage } from '../contact/contact';
-import { CatalogPage } from '../catalog/catalog';
+import { Globals } from '../../providers/globals';
 
 @Component({
   selector: 'page-home',
+  providers: [Globals],
   templateUrl: 'home.html'
 })
 export class HomePage {
-  pages: Array<{ title: string, component: any }>;
-  
-  constructor(public navCtrl: NavController) {
-
-    this.pages = [
-      { title: 'CATÁLOGO', component: CatalogPage },
-      { title: 'CONTACTO', component: ContactPage }
-    ];
-  }
-
-  openPage(page) {
-    this.navCtrl.setRoot(page.component);
-  }
+  constructor(public navCtrl: NavController, public globals: Globals) { }
 }
