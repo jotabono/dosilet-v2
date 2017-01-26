@@ -13,8 +13,8 @@
   						<h2>{{this.name}}</h2>
   						<h3>{{subtitle}}</h3>
               <div class="sliders">
-                <ion-slides pager="true" paginationType="progress">
-                  <ion-slide *ngFor="let p of products" class="background-contain" [ngStyle]="{'background-image': 'url(' + p.image + ')'}" >
+                <ion-slides pager="true">
+                  <ion-slide zoom="true" *ngFor="let p of products" class="background-contain" [ngStyle]="{'background-image': 'url(' + p.image + ')'}" >
                     <div class="product-name">
                       {{p.name}}
                     </div>
@@ -24,6 +24,7 @@
               </div>
               <div class="desc" [innerHtml]="description"></div>
   </div>
+  <button (click)="downloadFile()" id="sendBtn" type="submit" class="btn formBtn"  block>DESCARGAR CATÁLOGO <i class="ion-ios-arrow-forward"></i></button>
 </ion-content>
 <ion-footer>
   <div class="footer">
