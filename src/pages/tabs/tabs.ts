@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { CatalogPage } from '../catalog/catalog';
 import { ContactPage } from '../contact/contact';
+import { NavController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -14,7 +15,7 @@ export class TabsPage {
   tab2Root: any = CatalogPage;
   tab3Root: any = ContactPage;
 
-  constructor() {
+  constructor(public navCtrl: NavController) {
 
   }
 }

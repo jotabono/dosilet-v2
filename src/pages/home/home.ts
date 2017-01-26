@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
-import { Globals } from '../../providers/globals';
+import { CatalogPage } from '../catalog/catalog';
+import { ContactPage } from '../contact/contact';
 
 @Component({
   selector: 'page-home',
-  providers: [Globals],
   templateUrl: 'home.html'
 })
 export class HomePage {
-  constructor(public navCtrl: NavController, public globals: Globals) { }
+  constructor(public navCtrl: NavController) { }
+
+  goCatalog() {
+    this.navCtrl.push(CatalogPage);
+  }
+  goContact() {
+    this.navCtrl.push(ContactPage);
+  }
 }

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 import {Http} from '@angular/http';
-import { Globals } from '../../providers/globals';
-
+import { LoadingController } from 'ionic-angular';
+import { HomePage } from '../home/home';
+import { ContactPage } from '../contact/contact';
+import { CatalogPage } from '../catalog/catalog';
 @Component({
   selector: 'page-product',
   templateUrl: 'product.html'
@@ -17,9 +19,14 @@ export class ProductPage {
   subtitle : string;
   description : HTMLElement;
   image:string;
-  constructor(public navCtrl: NavController, private http: Http) {
-    this.dataTaxonomyUrl = 'http://dosilet.deideasmarketing.solutions/wp-json/wp/v2/get_taxonomy_data_bycategory?idcategory=5';
-    this.dataProductUrl = 'http://dosilet.deideasmarketing.solutions/wp-json/wp/v2/get_products_bycategory?idcategory=5';
+  constructor(public navCtrl: NavController, private http: Http,public params:NavParams,public loadingCtrl: LoadingController) {
+    let loader = this.loadingCtrl.create({
+      content: "Cargando...",
+      duration: 1500
+    });
+    loader.present();
+    this.dataTaxonomyUrl = 'http://dosilet.deideasmarketing.solutions/wp-json/wp/v2/get_taxonomy_data_bycategory?idcategory='+params.get("idCategory");
+    this.dataProductUrl = 'http://dosilet.deideasmarketing.solutions/wp-json/wp/v2/get_products_bycategory?idcategory='+params.get("idCategory");
     this.http.get(this.dataTaxonomyUrl)
       .map(res => res.json())
       .subscribe(data => {
@@ -34,10 +41,19 @@ export class ProductPage {
         .subscribe(data => {
           for (var i = 0; i < data.length; i++) {
              console.log(data[i].image.url);
-              this.image = (data[i].image.url != "undefined") ? data[i].image.url: "";
+              this.image = (data[i].image!= false && data[i].image.sizes.medium != "undefined") ? data[i].image.sizes.medium: "";
               this.products.push({ id: data[i].idproduct , image:this.image, name:data[i].product.post_title });
           }
           console.log(this.products);
         });
+  }
+  openHome() {
+    this.navCtrl.setRoot(HomePage);
+  }
+  goBack(){
+    this.navCtrl.pop();
+  }
+  goContact() {
+    this.navCtrl.push(ContactPage);
   }
 }

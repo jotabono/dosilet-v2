@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
 import {Http, Response} from "@angular/http";
 import { HomePage } from '../home/home';
-import { Globals } from '../../providers/globals';
-
+import { CatalogPage } from '../catalog/catalog';
 declare var window: any;
 @Component({
   selector: 'page-contact',
@@ -47,5 +46,11 @@ export class ContactPage {
   }
   openHome() {
     this.navCtrl.setRoot(HomePage);
+  }
+  goBack(){
+    this.navCtrl.pop();
+  }
+  goCatalog() {
+    this.navCtrl.push(CatalogPage);
   }
 }

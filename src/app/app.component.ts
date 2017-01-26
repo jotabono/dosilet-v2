@@ -3,8 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
-import { TabsPage } from '../pages/tabs/tabs';
-
+import { HomePage } from '../pages/home/home';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 export class MyApp {
 @ViewChild(Nav) nav: Nav;
 
-  rootPage = TabsPage;
+  rootPage = HomePage;
 
   constructor(platform: Platform, private http: Http) {
     platform.ready().then(() => {

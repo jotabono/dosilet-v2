@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      CATÁLOGO
-    </ion-title>
+  <ion-navbar class="navbarDosilet" hideBackButton="true">
+    <div (click)="openHome()" class="div-logo-header">
+      <img style="width:90px; height:auto;" src="assets/img/logo.png" />
+    </div>
   </ion-navbar>
 </ion-header>
 
@@ -25,3 +25,9 @@
               <div class="desc" [innerHtml]="description"></div>
   </div>
 </ion-content>
+<ion-footer>
+  <div class="footer">
+    <button (click)="goBack()" class="btn-footer" style="float:left; margin-left:30px;">VOLVER</button>
+    <button (click)="goContact()" class="btn-footer" style="float:right; margin-right:30px;">CONTACTO</button>
+  </div>
+</ion-footer>

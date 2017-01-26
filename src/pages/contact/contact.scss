@@ -66,6 +66,7 @@ page-contact {
      background-color: #EB0628 !important;
      width: 100%;
      padding: 5%;
+     margin-bottom:15px;
    }
 
    .formBtn:focus,
@@ -97,6 +98,7 @@ page-contact {
 
    .termsnconditions > *{
      font-weight: normal;
+     width: auto;
    }
 
    @media screen and (max-width: 360px) {
@@ -130,6 +132,18 @@ page-contact {
    margin-bottom: 15px;
    padding-left: 5%;
    padding-right: 5%;
-       width: 10%;
+       width: 5%;
+ }
+
+ .footer{
+   background-color:#EB0628;
+   width:100%;
+   height:40px;
+ }
+ .btn-footer{
+   color:white;
+   font-size:18px;
+   background-color:transparent;
+   margin:10px;
  }
 }
