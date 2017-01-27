@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
 import {Http} from '@angular/http';
 import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ContactPage } from '../contact/contact';
-import { Transfer } from 'ionic-native';
+import {File, Transfer} from 'ionic-native';
+import { Toast } from 'ionic-native';
+import { LocalNotifications } from 'ionic-native';
+
 declare var cordova: any;
 declare var window: any;
 
@@ -22,7 +25,9 @@ export class ProductPage {
   subtitle: string;
   description: HTMLElement;
   image: string;
-  constructor(public navCtrl: NavController, private http: Http, public params: NavParams, public loadingCtrl: LoadingController, private platform: Platform) {
+  storageDirectory: string = '';
+
+  constructor(public navCtrl: NavController, private http: Http, public params: NavParams, public loadingCtrl: LoadingController, public platform: Platform, public alertCtrl: AlertController) {
     let loader = this.loadingCtrl.create({
       content: "Cargando...",
       duration: 1500
@@ -49,18 +54,50 @@ export class ProductPage {
         }
         console.log(this.products);
       });
-  }
-  downloadFile() {
-    const fileTransfer = new Transfer();
-    let url = 'http://dosilet.deideasmarketing.solutions/wp-content/uploads/2017/01/Diagrama-2-1.pdf';
 
-    fileTransfer.download(url, cordova.file.dataDirectory + 'Diagrama-2-1.pdf').then((entry) => {
-      console.log('download complete: ' + entry.toURL());
-      this.platform.ready().then(() => {
-        window.plugins.toast.show("Catálogo descargado correctamente.", "short", "center");
+    this.platform.ready().then(() => {
+      // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
+      if (!this.platform.is('cordova')) {
+        return false;
+      }
+
+      if (this.platform.is('ios')) {
+        this.storageDirectory = cordova.file.documentsDirectory;
+      }
+      else if (this.platform.is('android')) {
+        this.storageDirectory = cordova.file.externalRootDirectory;
+      }
+      else {
+        // exit otherwise, but you could add further types here e.g. Windows
+        return false;
+      }
+    });
+  }
+
+  downloadFile() {
+
+    this.platform.ready().then(() => {
+
+      const fileTransfer = new Transfer();
+      const url = 'http://dosilet.deideasmarketing.solutions/wp-content/uploads/2017/01/Diagrama-2-1.pdf';
+
+      fileTransfer.download(url, this.storageDirectory + 'Diagrama.pdf').then((entry) => {
+
+
+        LocalNotifications.schedule({
+          id: 1,
+          text: '¡Descarga completada!'
+        });
+
+
+      }, (error) => {
+
+      LocalNotifications.schedule({
+        id: 1,
+        text: '¡Descarga fallida!'
       });
-    }, (error) => {
-      console.log('Errorrr');
+
+      });
     });
   }
   openHome() {
