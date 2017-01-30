@@ -33,7 +33,6 @@
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
-    "cordova-plugin-file-transfer",
     "cordova-plugin-inappbrowser",
     "cordova-plugin-local-notifications",
     "cordova-plugin-console",

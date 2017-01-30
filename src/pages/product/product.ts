@@ -4,8 +4,6 @@ import {Http} from '@angular/http';
 import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ContactPage } from '../contact/contact';
-import { Transfer } from 'ionic-native';
-import { LocalNotifications } from 'ionic-native';
 import {InAppBrowser} from 'ionic-native';
 
 declare var cordova: any;
@@ -25,7 +23,6 @@ export class ProductPage {
   subtitle: string;
   description: HTMLElement;
   image: string;
-  storageDirectory: string = '';
 
   constructor(public navCtrl: NavController, private http: Http, public params: NavParams, public loadingCtrl: LoadingController, public platform: Platform, public alertCtrl: AlertController) {
     let loader = this.loadingCtrl.create({
@@ -54,52 +51,11 @@ export class ProductPage {
         }
         console.log(this.products);
       });
-
-    this.platform.ready().then(() => {
-      // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
-      if (!this.platform.is('cordova')) {
-        return false;
-      }
-
-      if (this.platform.is('ios')) {
-        this.storageDirectory = cordova.file.documentsDirectory;
-      }
-      else if (this.platform.is('android')) {
-        this.storageDirectory = cordova.file.dataDirectory;
-      }
-      else {
-        // exit otherwise, but you could add further types here e.g. Windows
-        return false;
-      }
-    });
   }
 
   openCatalogPDF() {
     window.open('http://dosilet.deideasmarketing.solutions/wp-content/uploads/2017/01/Diagrama-2-1.pdf', '_system', 'location=yes')
   }
-
-  /*
-    downloadFile() {
-      this.platform.ready().then(() => {
-
-        const fileTransfer = new Transfer();
-        const file = 'http://dosilet.deideasmarketing.solutions/wp-content/uploads/2017/01/Diagrama-2-1.pdf';
-        const fileLocation = cordova.file.dataDirectory;
-
-        fileTransfer.download(file, fileLocation + 'catalogo.pdf').then((entry) => {
-          LocalNotifications.schedule({
-            id: 1,
-            text: '¡Descarga completada!'
-          });
-        }, (error) => {
-          LocalNotifications.schedule({
-            id: 1,
-            text: '¡Descarga fallida!'
-          });
-        });
-      });
-    }
-    */
   openHome() {
     this.navCtrl.setRoot(HomePage);
   }
