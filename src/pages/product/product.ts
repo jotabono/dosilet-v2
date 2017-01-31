@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import {Http} from '@angular/http';
 import { LoadingController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { ContactPage } from '../contact/contact';
-import {InAppBrowser} from 'ionic-native';
 
 declare var cordova: any;
 declare var window: any;
@@ -24,7 +23,7 @@ export class ProductPage {
   description: HTMLElement;
   image: string;
 
-  constructor(public navCtrl: NavController, private http: Http, public params: NavParams, public loadingCtrl: LoadingController, public platform: Platform, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private http: Http, public params: NavParams, public loadingCtrl: LoadingController, public platform: Platform) {
     let loader = this.loadingCtrl.create({
       content: "Cargando...",
       duration: 1500
