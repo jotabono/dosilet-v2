@@ -9,7 +9,7 @@ import { ContactPage } from '../contact/contact';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController) {}
 
   goCatalog() {
     this.navCtrl.push(CatalogPage);
